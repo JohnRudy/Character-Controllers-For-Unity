@@ -1,20 +1,25 @@
 using UnityEngine;
 
+
+/// <summary>
+/// Base Abstract class for all StateMachine states. 
+/// Inherit from JR.Poorman.CharacterControllers.StateMachine.State 
+/// and add the new state on the gameobject as a component
+/// </summary>
+
+
 namespace JR.Poorman.CharacterControllers.StateMachine {
 
     public abstract class State : MonoBehaviour {
 
         #region Unity Callbacks
 
-        // No need to compile each OnValidate method.
-#if UNITY_EDITOR
         private void OnValidate ( ) {
             TryGetComponent<StateMachine> ( out machine );
             if ( machine == null ) {
                 Debug.LogWarning ( "No state machine on GameObject!" );
             }
         }
-#endif
 
         // Only a statemachine should switch states and enable / disable state components
         private void OnEnable ( ) {
@@ -48,32 +53,38 @@ namespace JR.Poorman.CharacterControllers.StateMachine {
         #endregion
 
         #region User Methods
+
+        //////////////////////////////////////////////////////////
+        // Always call base.(method)(); before anything else    //
+        // The !enabled return is crucial for operation         //
+        //////////////////////////////////////////////////////////
+
         /// <summary>
         /// void to override once this state has entered a satemachines currentstate.
-        /// Acts as  Unitys OnEnable method.
+        /// Acts the same as Unitys OnEnable method.
         /// </summary>
-        public virtual void OnStateEnter ( ) { }
+        public virtual void OnStateEnter ( ) { if ( !enabled ) return; }
 
         /// <summary>
         /// void to override once this state has left a statemachines currentstate.
-        /// Acts as Unitys OnDisable method.
+        /// Acts the same as Unitys OnDisable method.
         /// </summary>
-        public virtual void OnStateExit ( ) { }
+        public virtual void OnStateExit ( ) { if ( !enabled ) return; }
 
         /// <summary>
         /// void to override for Unity Update method.
         /// </summary>
-        public virtual void OnStateUpdate ( ) { }
+        public virtual void OnStateUpdate ( ) { if ( !enabled ) return; }
 
         /// <summary>
         /// void to override for Unity FixedUpdate method.
         /// </summary>
-        public virtual void OnStateFixedUpdate ( ) { }
+        public virtual void OnStateFixedUpdate ( ) { if ( !enabled ) return; }
 
         /// <summary>
         /// void to override for Unity LateUpdate method.
         /// </summary>
-        public virtual void OnStateLateUpdate ( ) { }
+        public virtual void OnStateLateUpdate ( ) { if ( !enabled ) return; }
         #endregion
     }
 }

@@ -1,40 +1,50 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Abstract class for all Character State machines. 
+/// Only change stuff here if you know what you are doing.
+/// </summary>
+
 namespace JR.Poorman.CharacterControllers.StateMachine {
 
     public abstract class StateMachine : MonoBehaviour {
         #region State Machine Variables
 
         protected List<State> states = new List<State> ( );                 // Used for only enumerating through if a state switch requires it. 
-        protected State currentState;                                       // Used for state calls
+        private State currentState;                                         // Used for state calls
         [SerializeField] private State startingState;                       // Desired Starting state
         public State GetCurrentState { get { return currentState; } }       // public accessor for other classes
         #endregion
 
 
         #region Unity Callbacks 
-        private void Start ( ) {
+        private void Awake ( ) {
+            states.Add ( startingState );
             startingState.InitializeState ( this );
             currentState = startingState;
+            currentState.StateEnter ( );
         }
 
+        private void OnDisable ( ) => currentState.StateLeave ( );
+
         // Calling state Update each frame
-        private void Update ( ) {
+        public virtual void Update ( ) {
             if ( currentState ) {
                 currentState.OnStateUpdate ( );
             }
         }
 
-        // Calling current state each fixed update
-        private void FixedUpdate ( ) {
+        // Calling state fixed update each fixedUpdate
+        public virtual void FixedUpdate ( ) {
             if ( currentState ) {
                 currentState.OnStateFixedUpdate ( );
             }
         }
 
-        // Calling current state each late update
-        private void LateUpdate ( ) {
+        // Calling state LateUpdate each LateUpdate
+        public virtual void LateUpdate ( ) {
             if ( currentState ) {
                 currentState.OnStateLateUpdate ( );
             }
@@ -88,7 +98,7 @@ namespace JR.Poorman.CharacterControllers.StateMachine {
         /// <summary>
         /// Sets the given state type to current state.
         /// </summary>
-        /// <typeparam name="StateType"> objecttype to be set as </typeparam>
+        /// <typeparam name="StateType"> object type to be set as </typeparam>
         /// <returns>returns true once state has been switched </returns>
         public bool SwitchState<StateType> ( ) where StateType : State {
             // enumerating through a list if the state is present 
