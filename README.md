@@ -15,6 +15,8 @@ First and foremost.
 These character controllers use a state machine to work. 
 2D, Third person and FPS controllers are included. 
 Each prefab inside their respective folders. 
+
+On StateMachines and States
 -----------------------------------------------------------------------------
 To use a state machine and its states,
 use the library from the Shared>Abstract Classes folder
@@ -51,6 +53,8 @@ public override void OnStateEnter(){
 	base.OnStateEnter();
 	// Your code here
 }
+						     
+Important also
 ---------------------------------------------------------------------------
 On State machines. When using unity's callbacks (Update, FixedUpdate, etc)
 use the override method like above and include base.method();
@@ -63,9 +67,13 @@ FixedUpdate
 LateUpdate
 
 See any of the character controller state machines on how to use them
+		
+Just for fun
 ------------------------------------------------------------------------------------
 Generic classes are independant of state machines and a quick class to reference for
 inputs and camera controllers for that character controller type
+		
+Somewhat useful 
 ------------------------------------------------------------------------------------
 GroundCheck2D and GroundCheck3D use a double safety system to determine if a
 rigidbody with a collider is grounded by collision and raycasting. 
