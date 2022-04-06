@@ -271,6 +271,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 298a748a8749d0e429515b2c00956c61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0.1
+  moveDelta: 10
 --- !u!114 &408337094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,13 +343,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba0386ac112898a40a3b759faeea68ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundCheckOffset: {x: 0, y: 0, z: 0}
-  groundTags: []
+  groundCheckOffset: {x: 0, y: 1, z: 0}
+  groundTags:
+  - Ground
   hitTriggerColliders: 0
   groundDistance: 0.1
-  maxSeconds: 0
-  coyoteTimer: 0
-  debugInInspector: 0
+  maxSeconds: 0.15
+  debugInInspector: 1
 --- !u!54 &408337098
 Rigidbody:
   m_ObjectHideFlags: 0

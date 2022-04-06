@@ -16,7 +16,7 @@ public class TPStateMachine : StateMachine {
         if ( groundedCheck.IsGrounded && GetCurrentState.GetType ( ) != typeof ( TPGrounded ) ) {
             SwitchState<TPGrounded> ( );
         }
-        if ( groundedCheck.IsGrounded && GetCurrentState.GetType ( ) != typeof ( TPInAir ) ) {
+        if ( !groundedCheck.IsGrounded && GetCurrentState.GetType ( ) != typeof ( TPInAir ) ) {
             SwitchState<TPInAir> ( );
         }
     }

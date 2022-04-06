@@ -1,30 +1,30 @@
 using JR.Poorman.CharacterControllers.StateMachine;
-using JR.Poorman.CharacterControllers.ThirdPerson;
 using UnityEngine;
 
 [RequireComponent ( typeof ( Rigidbody ) )]
 public class TPGrounded : State {
-    private TPSpringCameraController tpspringCameraController;
     private Rigidbody rb;
 
-    private float rotY;
-    private Vector2 look;
-    private Vector2 move;
     private Vector3 moveDir;
-
+    private Vector3 rotDir;
     [SerializeField, Range ( 0.01f , 0.2f )] private float moveSpeed = 0.1f;
     [SerializeField, Range ( 1f , 50f )] private float moveDelta = 2f;
-    [SerializeField, Range ( 0.01f, 5f )] private float turnDelta = 3f;
+    [SerializeField, Range ( 0.01f , 5f )] private float turnDelta = 3f;
 
-    private void Awake ( ) {
-        tpspringCameraController = GetComponent<TPSpringCameraController> ( );
-        rb = GetComponent<Rigidbody> ( );
+    private void Awake ( ) => rb = GetComponent<Rigidbody> ( );
+
+    public override void OnStateEnter ( ) {
+        base.OnStateEnter ( );
+        moveDir = Vector3.zero;
     }
 
     public override void OnStateUpdate ( ) {
         base.OnStateUpdate ( );
-        GetValues ( );
         TurnPlayerTowardsLookDirection ( );
+
+        if ( TPControlSettings.ThirdPersonInputActions.Player.Jump.IsPressed ( ) ) {
+            rb.AddForce ( ( Vector3.up + (rb.transform.TransformDirection ( Vector3.forward )/2)).normalized * 50 );
+        }
     }
 
     public override void OnStateFixedUpdate ( ) {
@@ -32,17 +32,11 @@ public class TPGrounded : State {
         MovePlayer ( );
     }
 
-    private void GetValues ( ) {
-        look = TPControlSettings.ThirdPersonInputActions.Player.Look.ReadValue<Vector2> ( );
-        move = TPControlSettings.ThirdPersonInputActions.Player.Move.ReadValue<Vector2> ( );
-        rotY += look.x * TPControlSettings.MouseStregth * ( TPControlSettings.InvertHorizontal == true ? -1 : 1 );
-    }
-
     private void MovePlayer ( ) {
         moveDir = new Vector3 ( ) {
-            x = Mathf.Lerp ( moveDir.x , move.x , moveDelta * Time.fixedDeltaTime ) ,
+            x = Mathf.Lerp ( moveDir.x , TPControlSettings.Move.x , moveDelta * Time.fixedDeltaTime ) ,
             y = 0 ,
-            z = Mathf.Lerp ( moveDir.z , move.y , moveDelta * Time.fixedDeltaTime )
+            z = Mathf.Lerp ( moveDir.z , TPControlSettings.Move.y , moveDelta * Time.fixedDeltaTime )
         };
 
         moveDir = Vector3.ClampMagnitude ( moveDir , moveSpeed );
@@ -53,14 +47,14 @@ public class TPGrounded : State {
     // Smoothly turn to look direction with the least amount of effort.
     private void TurnPlayerTowardsLookDirection ( ) {
         // To not turn without movement
-        if ( move.magnitude == 0 ) return; 
-        Vector3 rotDir = new Vector3 ( ) {
+        if ( TPControlSettings.Move.magnitude == 0 ) return;
+        rotDir = new Vector3 ( ) {
             x = 0 ,
-            y = rotY ,
+            y = TPControlSettings.RotY ,
             z = 0
         };
 
         // Quaternion lerp smooths and takes into account multiple rotations. 
-        rb.transform.rotation =  Quaternion.Lerp(transform.rotation, Quaternion.Euler ( rotDir ), turnDelta * Time.deltaTime); 
+        rb.transform.rotation = Quaternion.Lerp ( transform.rotation , Quaternion.Euler ( rotDir ) , turnDelta * Time.deltaTime );
     }
 }
