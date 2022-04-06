@@ -54,10 +54,12 @@ States provide override methods
 ALWAYS USE base.(method name)() when using any of these. 
 
 Example 
+						     
 public override void OnStateEnter(){
 	base.OnStateEnter();
 	// Your code here
 }
+	
 						     
 Important also
 ---------------------------------------------------------------------------
