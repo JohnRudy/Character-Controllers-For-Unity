@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: df905d01c4911c345adc8a4aba4f2bee
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 8404be70184654265930450def6a9037, type: 3}
+  generateWrapperCode: 1
+  wrapperCodePath: ThirdPersonInputActions
+  wrapperClassName: ThirdPersonInputActions
+  wrapperCodeNamespace: JR.Poorman.CharacterControllers.ThirdPerson

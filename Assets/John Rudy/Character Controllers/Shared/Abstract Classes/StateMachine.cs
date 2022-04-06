@@ -20,14 +20,14 @@ namespace JR.Poorman.CharacterControllers.StateMachine {
 
 
         #region Unity Callbacks 
-        private void Awake ( ) {
+        public virtual void Awake ( ) {
             states.Add ( startingState );
             startingState.InitializeState ( this );
             currentState = startingState;
             currentState.StateEnter ( );
         }
 
-        private void OnDisable ( ) => currentState.StateLeave ( );
+        public virtual void OnDisable ( ) => currentState.StateLeave ( );
 
         // Calling state Update each frame
         public virtual void Update ( ) {

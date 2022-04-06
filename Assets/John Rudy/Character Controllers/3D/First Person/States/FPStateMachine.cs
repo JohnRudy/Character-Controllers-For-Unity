@@ -12,7 +12,7 @@ using UnityEngine;
 public class FPStateMachine : StateMachine {
     private GroundedCheck3D groundedCheck;
 
-    private void Start ( ) => groundedCheck = GetComponent<GroundedCheck3D> ( );
+    public override void Awake ( ) => groundedCheck = GetComponent<GroundedCheck3D> ( );
 
     public override void Update ( ) {
         base.Update ( );
