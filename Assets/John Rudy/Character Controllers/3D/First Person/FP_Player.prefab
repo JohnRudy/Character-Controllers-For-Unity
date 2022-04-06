@@ -18,9 +18,9 @@ GameObject:
   - component: {fileID: 2739932002788169818}
   - component: {fileID: 2739932002788169812}
   - component: {fileID: 2739932002788169813}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FP_Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetCamera: {fileID: 0}
-  target: {fileID: 2739932002788169819}
+  target: {fileID: 0}
   cameraOffset: {x: 0, y: 1.7, z: 0}
   upperAngleLimit: 60
   lowerAngleLimit: -60
@@ -150,8 +150,7 @@ MonoBehaviour:
   hitTriggerColliders: 0
   groundDistance: 0.1
   maxSeconds: 0.15
-  coyoteTimer: 0
-  debugInInspector: 1
+  debugInInspector: 0
 --- !u!114 &2739932002788169818
 MonoBehaviour:
   m_ObjectHideFlags: 0

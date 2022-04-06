@@ -34,6 +34,7 @@ public class FPGroundedState : State {
         rb.MovePosition ( rb.transform.TransformDirection ( direction ) + rb.position );
     }
 
+    // This gets called by the new Input system
     private void OnJump ( ) {
         // This is here because it seems a disabled component still gets calls and activates. 
         // Bug? Feature? Oversight? Eitherway, annoying. 

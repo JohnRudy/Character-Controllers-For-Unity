@@ -1,6 +1,12 @@
 using JR.Poorman.CharacterControllers.ThirdPerson;
 using UnityEngine;
 
+
+/// <summary>
+/// Third person Control settings
+/// Having most of the input variables here makes it easier to refer to them and update when changing states. 
+/// </summary>
+
 public class TPControlSettings : MonoBehaviour {
     private static ThirdPersonInputActions tpInputActions;
 

@@ -3,7 +3,6 @@ using UnityEngine;
 
 /// <summary>
 /// Base Abstract class for all StateMachine states. 
-/// Inherit from JR.Poorman.CharacterControllers.StateMachine.State 
 /// and add the new state on the gameobject as a component
 /// </summary>
 

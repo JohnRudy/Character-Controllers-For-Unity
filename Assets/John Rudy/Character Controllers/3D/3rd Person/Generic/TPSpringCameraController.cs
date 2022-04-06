@@ -1,6 +1,11 @@
 using System.Linq;
 using UnityEngine;
 
+
+/// <summary>
+/// Third person camera controller with "spring arm" type behaviour
+/// </summary>
+
 namespace JR.Poorman.CharacterControllers.ThirdPerson {
 
     public class TPSpringCameraController : MonoBehaviour {

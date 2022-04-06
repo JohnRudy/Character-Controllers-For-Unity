@@ -1,6 +1,11 @@
 using JR.Poorman.CharacterControllers.StateMachine;
 using UnityEngine;
 
+
+/// <summary>
+/// Third Person Grounded State
+/// </summary>
+
 [RequireComponent ( typeof ( Rigidbody ) )]
 public class TPGrounded : State {
     private Rigidbody rb;

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 66e0d44f21103ec4a9df1beccfd31561
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 8404be70184654265930450def6a9037, type: 3}
+  generateWrapperCode: 1
+  wrapperCodePath: Assets/John Rudy/Character Controllers/2D/Platformer/InputActions/TDPlatformerInputActions.cs
+  wrapperClassName: TDPlatformerInputActions
+  wrapperCodeNamespace: JR.Poorman.CharacterControllers.TDPlatformer

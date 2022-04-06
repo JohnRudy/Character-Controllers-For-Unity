@@ -8,19 +8,15 @@ using UnityEngine;
 /// Add states as components on the transform
 /// </summary>
 
-[RequireComponent ( typeof ( GroundedCheck3D ) )]
+[RequireComponent ( typeof ( GroundCheck3D ) )]
 public class FPStateMachine : StateMachine {
-    private GroundedCheck3D groundedCheck;
-
-    public override void Awake ( ) => groundedCheck = GetComponent<GroundedCheck3D> ( );
-
     public override void Update ( ) {
         base.Update ( );
 
-        if ( groundedCheck.IsGrounded && GetCurrentState.GetType ( ) != typeof ( FPGroundedState ) ) {
+        if ( GroundCheck3D.IsGrounded && GetCurrentState.GetType ( ) != typeof ( FPGroundedState ) ) {
             SwitchState<FPGroundedState> ( );
         }
-        if ( !groundedCheck.IsGrounded && GetCurrentState.GetType ( ) != typeof ( FPInAirState ) ) {
+        if ( !GroundCheck3D.IsGrounded && GetCurrentState.GetType ( ) != typeof ( FPInAirState ) ) {
             SwitchState<FPInAirState> ( );
         }
     }
