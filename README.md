@@ -41,10 +41,15 @@ See the abstract classes and child scripts to see how it works.
 
 States provide override methods
         public virtual void OnStateEnter ( )  <- When a state is activated. Happens only once
+						 
         public virtual void OnStateExit ( ) <- When a state is left. Happens only once
+	
         public virtual void OnStateUpdate ( ) <- Each frame when the state is active
+						 
         public virtual void OnStateFixedUpdate ( ) <- Each FixedUpdate when the state is active
+	
         public virtual void OnStateLateUpdate ( ) <- Each LateUpdate when the state is active
+						     
 
 ALWAYS USE base.(method name)() when using any of these. 
 
