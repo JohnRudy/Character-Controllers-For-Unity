@@ -40,6 +40,7 @@ Easy.
 See the abstract classes and child scripts to see how it works. 
 
 States provide override methods
+	
         public virtual void OnStateEnter ( )  <- When a state is activated. Happens only once
 						 
         public virtual void OnStateExit ( ) <- When a state is left. Happens only once
